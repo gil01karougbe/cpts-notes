@@ -10,7 +10,12 @@ const config: QuartzConfig = {
   configuration: {
     pageTitle: "CPTS Notes",
     pageTitleSuffix: " · HTB Pentester Path",
-    enableSPA: true,
+    // SPA disabled: on a project site served under /cpts-notes/, the SPA router
+    // navigates to folder pages without a trailing slash, which makes relative
+    // links over-climb and drop the /cpts-notes/ base (404s on the root domain).
+    // Full page loads let GitHub Pages 301-redirect folder URLs to add the
+    // trailing slash, so relative links resolve correctly.
+    enableSPA: false,
     enablePopovers: true,
     analytics: null,
     locale: "en-US",
